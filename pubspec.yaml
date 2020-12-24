@@ -1,4 +1,4 @@
-name: twitter_qr_scanner
+name: twitter_qr_scanner_forked
 description: Twitter qr code scan package for flutter.
 version: 0.0.6
 
@@ -31,5 +31,9 @@ flutter:
 
   # To add assets to your package, add an assets section, like this:
   assets:
-    - packages/twitter_qr_scanner/asset/QRButton.flr
+    - packages/twitter_qr_scanner_forked/asset/QRButton.flr
+
+  # plugin:
+  #   androidPackage: com.anka.twitter_qr_scanner_forked
+  #   pluginClass: TwitterQrScannerPlugin
 

@@ -1,4 +1,4 @@
-package com.anka.twitter_qr_scanner
+package com.anka.twitter_qr_scanner_forked
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -12,7 +12,7 @@ class TwitterQrScannerPlugin : MethodCallHandler {
             registrar
                     .platformViewRegistry()
                     .registerViewFactory(
-                            "com.anka.twitter_qr_scanner/qrview", QRViewFactory(registrar))
+                            "com.anka.twitter_qr_scanner_forked/qrview", QRViewFactory(registrar))
         }
     }
 

@@ -4,18 +4,18 @@ QR Code scan page like Twitter.
 
 ## Example
 
-<img src="https://raw.githubusercontent.com/Furkankyl/twitter_qr_scanner/master/screen1.png" width="35%" />          <img src="https://raw.githubusercontent.com/Furkankyl/twitter_qr_scanner/master/screen2.png" width="35%"  />
+<img src="https://raw.githubusercontent.com/Furkankyl/twitter_qr_scanner_forked/master/screen1.png" width="35%" />          <img src="https://raw.githubusercontent.com/Furkankyl/twitter_qr_scanner_forked/master/screen2.png" width="35%"  />
 
 ## Installation
 
-To use this plugin, add twitter_qr_scanner as a [dependency in your pubspec.yaml file.](https://flutter.dev/docs/development/packages-and-plugins/using-packages)
+To use this plugin, add twitter_qr_scanner_forked as a [dependency in your pubspec.yaml file.](https://flutter.dev/docs/development/packages-and-plugins/using-packages)
 
 ```bash
-twitter_qr_scanner: any
+twitter_qr_scanner_forked: any
 ```
 
 ## Getting Started
-Check out the [example](https://github.com/Furkankyl/twitter_qr_scanner/tree/master/example) app using twitter_qr_scanner.
+Check out the [example](https://github.com/Furkankyl/twitter_qr_scanner_forked/tree/master/example) app using twitter_qr_scanner_forked.
 
 # Android Integration
 
@@ -78,4 +78,4 @@ Dispose:
 ```
 
 ## License
-[Apache](https://github.com/Furkankyl/twitter_qr_scanner/blob/master/LICENSE)
+[Apache](https://github.com/Furkankyl/twitter_qr_scanner_forked/blob/master/LICENSE)

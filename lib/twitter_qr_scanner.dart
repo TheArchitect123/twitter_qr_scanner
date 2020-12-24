@@ -1,4 +1,4 @@
-library twitter_qr_scanner;
+library twitter_qr_scanner_forked;
 
 import 'dart:async';
 import 'dart:io';
@@ -198,7 +198,7 @@ class _QRViewState extends State<QRView> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(255),
                 child: FlareActor(
-                  "packages/twitter_qr_scanner/asset/QRButton.flr",
+                  "packages/twitter_qr_scanner_forked/asset/QRButton.flr",
                   alignment: Alignment.center,
                   animation: flareAnimation,
                   fit: BoxFit.contain,

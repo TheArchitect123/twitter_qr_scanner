@@ -1,4 +1,4 @@
-package com.anka.twitter_qr_scanner
+package com.anka.twitter_qr_scanner_forked
 
 import android.content.Context
 import io.flutter.plugin.common.PluginRegistry

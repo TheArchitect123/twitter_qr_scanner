@@ -17,7 +17,7 @@ public class QRView:NSObject,FlutterPlatformView {
     public init(withFrame frame: CGRect, withRegistrar registrar: FlutterPluginRegistrar, withId id: Int64){
         self.registrar = registrar
         previewView = UIView(frame: frame)
-        channel = FlutterMethodChannel(name: "com.anka.twitter_qr_scanner/qrview_\(id)", binaryMessenger: registrar.messenger())
+        channel = FlutterMethodChannel(name: "com.anka.twitter_qr_scanner_forked/qrview_\(id)", binaryMessenger: registrar.messenger())
     }
     
     func isCameraAvailable(success: Bool) -> Void {

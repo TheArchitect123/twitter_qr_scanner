@@ -1,4 +1,4 @@
-group 'com.anka.twitter_qr_scanner'
+group 'com.anka.twitter_qr_scanner_forked'
 version '1.0-SNAPSHOT'
 
 buildscript {

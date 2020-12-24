@@ -1,4 +1,4 @@
-package com.anka.twitter_qr_scanner
+package com.anka.twitter_qr_scanner_forked
 
 import android.Manifest
 import android.app.Activity
@@ -35,7 +35,7 @@ class QRView(private val registrar: PluginRegistry.Registrar, id: Int) :
 
     init {
         registrar.addRequestPermissionsResultListener(CameraRequestPermissionsListener())
-        channel = MethodChannel(registrar.messenger(), "com.anka.twitter_qr_scanner/qrview_$id")
+        channel = MethodChannel(registrar.messenger(), "com.anka.twitter_qr_scanner_forked/qrview_$id")
         channel.setMethodCallHandler(this)
         checkAndRequestPermission(null)
         registrar.activity().application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {

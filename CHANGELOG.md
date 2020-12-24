@@ -16,8 +16,8 @@
 
 ## [0.0.5] - 13 January 2020
 
-* unregistered type: com.anka.twitter_qr_scanner/qrview bug fixed
+* unregistered type: com.anka.twitter_qr_scanner_forked/qrview bug fixed
 
 ## [0.0.6] - 13 January 2020
 
-* unregistered type: com.anka.twitter_qr_scanner/qrview bug fixed
+* unregistered type: com.anka.twitter_qr_scanner_forked/qrview bug fixed
