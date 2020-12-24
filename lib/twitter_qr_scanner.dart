@@ -1,14 +1,18 @@
 library twitter_qr_scanner;
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_qr_reader/qrcode_reader_view.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 typedef void QRViewCreatedCallback(QRViewController controller);
@@ -44,7 +48,38 @@ class _QRViewState extends State<QRView> {
   CarouselSlider slider;
   var flareAnimation = "view";
 
-  getSlider() {
+  void openBusinessPhotoUpdatePhotoGallery(BuildContext context) async {
+    var image = await (new ImagePicker()).getImage(source: ImageSource.gallery);
+    if (image != null) {
+      if (!TextUtil.isEmpty(image.path)) {
+        try {
+          File croppedFile = await ImageCropper.cropImage(
+              sourcePath: image.path,
+              aspectRatioPresets: [
+                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.ratio3x2,
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.ratio4x3,
+                CropAspectRatioPreset.ratio16x9
+              ],
+              androidUiSettings: AndroidUiSettings(
+                  toolbarTitle: 'Crop your Photo',
+                  toolbarColor: Colors.deepOrange,
+                  toolbarWidgetColor: Colors.white,
+                  showCropGrid: true,
+                  initAspectRatio: CropAspectRatioPreset.original,
+                  lockAspectRatio: false),
+              iosUiSettings: IOSUiSettings(
+                minimumAspectRatio: 1.0,
+              ));
+
+          if (croppedFile != null) {}
+        } catch (issue) {}
+      }
+    }
+  }
+
+  getSlider(BuildContext itemContext) {
     setState(() {
       slider = CarouselSlider(
         height: MediaQuery.of(context).size.height,
@@ -66,29 +101,32 @@ class _QRViewState extends State<QRView> {
             decoration: ShapeDecoration(
               shape: widget.overlay,
             ),
-            child: QrcodeReaderView(key: qrViewKey, onScan: onScan),
           ),
           Container(
-            alignment: Alignment.center,
-            decoration: ShapeDecoration(
-              shape: widget.overlay,
-            ),
-            child: Container(
-              width: 240,
-              height: 240,
-              padding: EdgeInsets.all(21),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: widget.qrCodeBackgroundColor,
+              alignment: Alignment.center,
+              decoration: ShapeDecoration(
+                shape: widget.overlay,
               ),
-              child: QrImage(
-                data: widget.data,
-                version: QrVersions.auto,
-                foregroundColor: widget.qrCodeForegroundColor,
-                gapless: true,
-              ),
-            ),
-          ),
+              child: GestureDetector(
+                onTap: () {
+                  openBusinessPhotoUpdatePhotoGallery(itemContext);
+                },
+                child: Container(
+                  width: 240,
+                  height: 240,
+                  padding: EdgeInsets.all(21),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: widget.qrCodeBackgroundColor,
+                  ),
+                  child: QrImage(
+                    data: widget.data,
+                    version: QrVersions.auto,
+                    foregroundColor: widget.qrCodeForegroundColor,
+                    gapless: true,
+                  ),
+                ),
+              )),
         ],
       );
     });
@@ -120,7 +158,8 @@ class _QRViewState extends State<QRView> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        widget.overlay != null ? getSlider() : Container(),
+        _getPlatformQrView(),
+        widget.overlay != null ? getSlider(context) : Container(),
         Align(
           alignment: Alignment.topLeft,
           child: SafeArea(
@@ -180,27 +219,7 @@ class _QRViewState extends State<QRView> {
   }
 
   Widget _getPlatformQrView() {
-    Widget _platformQrView;
-    switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        _platformQrView = AndroidView(
-          viewType: 'com.anka.twitter_qr_scanner/qrview',
-          onPlatformViewCreated: _onPlatformViewCreated,
-        );
-        break;
-      case TargetPlatform.iOS:
-        _platformQrView = UiKitView(
-          viewType: 'com.anka.twitter_qr_scanner/qrview',
-          onPlatformViewCreated: _onPlatformViewCreated,
-          creationParams: _CreationParams.fromWidget(0, 0).toMap(),
-          creationParamsCodec: StandardMessageCodec(),
-        );
-        break;
-      default:
-        throw UnsupportedError(
-            "Trying to use the default webview implementation for $defaultTargetPlatform but there isn't a default one");
-    }
-    return _platformQrView;
+    return QrcodeReaderView(key: qrViewKey, onScan: onScan);
   }
 
   void _onPlatformViewCreated(int id) async {
