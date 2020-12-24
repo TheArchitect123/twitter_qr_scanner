@@ -1,5 +1,3 @@
-library twitter_qr_scanner;
-
 import 'dart:async';
 import 'dart:io';
 
