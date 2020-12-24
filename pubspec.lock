@@ -86,9 +86,11 @@ packages:
   flutter_qr_reader:
     dependency: "direct main"
     description:
-      name: flutter_qr_reader
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: c63bda1ce892ceb7b18486c79f1bf681973320d4
+      url: "https://github.com/TheArchitect123/flutter_qr_reader.git"
+    source: git
     version: "1.0.3"
   flutter_test:
     dependency: "direct dev"

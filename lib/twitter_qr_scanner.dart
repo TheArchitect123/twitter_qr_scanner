@@ -66,6 +66,7 @@ class _QRViewState extends State<QRView> {
             decoration: ShapeDecoration(
               shape: widget.overlay,
             ),
+            child: QrcodeReaderView(key: qrViewKey, onScan: onScan),
           ),
           Container(
             alignment: Alignment.center,
@@ -119,7 +120,6 @@ class _QRViewState extends State<QRView> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        QrcodeReaderView(key: qrViewKey, onScan: onScan),
         widget.overlay != null ? getSlider() : Container(),
         Align(
           alignment: Alignment.topLeft,
